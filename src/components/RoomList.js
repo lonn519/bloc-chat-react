@@ -17,7 +17,7 @@ class RoomList extends Component {
             const room = snapshot.val();
             room.key = snapshot.key;
             this.setState({ rooms: this.state.rooms.concat(room)})
-            console.log(room);
+            //console.log(room);
         });
     
     }
@@ -37,6 +37,19 @@ class RoomList extends Component {
             name: this.state.newRoomName
         });
     }
+
+    showRoomName(room){
+            //console.log("In showRoomName(room)");
+            //console.log(this.props.activeRoom);
+            //console.log(room.key);
+        if (this.props.activeRoom===room.key){
+            return <b>{room.name}</b>;
+        } else {
+            return room.name;
+        }
+    }
+
+
     render(){
         return(
         <div className='RoomList'>
@@ -52,8 +65,8 @@ class RoomList extends Component {
             <tbody>
                 {
                     this.state.rooms.map((room) =>
-                        <tr className='room' key={room.key}>
-                        <td>{room.name}</td>
+                        <tr className='room' key={room.key} onClick={()=>this.props.handleRoomChange(room.key)}>
+                        <td>{this.showRoomName(room)}</td>
                         </tr>
                     )
                 }
@@ -64,7 +77,7 @@ class RoomList extends Component {
             <input type='submit' />
         </form>
         </div>
-        )
+        );
     }
 }
 
