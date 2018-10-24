@@ -26,7 +26,7 @@ class App extends Component {
     }
   }
 
-  handleRoomChange(roomID){
+  handleRoomChange=(roomID)=>{
     this.setState({activeRoom:roomID})
   }
 

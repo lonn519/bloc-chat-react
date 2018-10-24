@@ -19,7 +19,6 @@ class RoomList extends Component {
             this.setState({ rooms: this.state.rooms.concat(room)})
             //console.log(room);
         });
-    
     }
 
     handleSubmit(e){
@@ -39,9 +38,6 @@ class RoomList extends Component {
     }
 
     showRoomName(room){
-            //console.log("In showRoomName(room)");
-            //console.log(this.props.activeRoom);
-            //console.log(room.key);
         if (this.props.activeRoom===room.key){
             return <b>{room.name}</b>;
         } else {
