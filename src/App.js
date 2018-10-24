@@ -22,7 +22,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      activeRoom: '-LPXhM1vk3FP4cZMtFzV'
+      activeRoom: ''
     }
   }
 
