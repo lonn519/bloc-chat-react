@@ -1,13 +1,13 @@
-.App {
+.AppX {
   text-align: center;
 }
 
-.App-logo {
+.App-logoX {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
 }
 
-.App-header {
+.App-headerX {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -18,17 +18,8 @@
   color: white;
 }
 
-.App-link {
+.App-linkX {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .roomList {
@@ -56,4 +47,53 @@
 
 #message-list {
   width: 70%;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-main {
+  position:fixed;
+  background: white;
+  width: 80%;
+  height: auto;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+.modal {
+  top: 100px;
+  left: 25%;
+  background: '#fff000';
+  border-radius: 5;
+  max-width: 200px;
+  min-height: 50px;
+  max-height: 100px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.3);
+  padding: 50;
 }

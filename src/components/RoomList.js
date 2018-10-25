@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Modal from './Modal.js'
 
 class RoomList extends Component {
     constructor(props){
@@ -6,10 +7,16 @@ class RoomList extends Component {
 
         this.state = {
             rooms: [],
-            newRoomName: ''
+            newRoomName: '',
+            isOpen: false
         };
 
         this.roomsRef = this.props.firebase.database().ref('rooms');
+    }
+
+    toggleModal=()=> {
+        this.setState({isOpen: !this.state.isOpen});
+        this.clearCreateRoomForm();
     }
 
     componentDidMount() {
@@ -31,10 +38,16 @@ class RoomList extends Component {
         this.setState({newRoomName: e.target.value});
     }
 
+    clearCreateRoomForm=()=>{
+        this.setState({newRoomName: ''});
+    }
+
     createRoom(){
         this.roomsRef.push({
             name: this.state.newRoomName
         });
+        this.toggleModal();
+
     }
 
     showRoomName(room){
@@ -49,6 +62,15 @@ class RoomList extends Component {
     render(){
         return(
         <div className='RoomList'>
+        <Modal show={this.state.isOpen} onClose={this.toggleModal}>
+            <form onSubmit = { (e)=> this.handleSubmit(e)}>
+                <input type='text' value={this.state.newRoomName} onChange = {(e) =>this.handleChange(e)}/>
+                <input type='submit' />
+            </form>
+        </Modal>
+        <button type="button" onClick={this.toggleModal}>
+        create room
+        </button>
         <table id='room-list'>
             <colgroup>
                 <col id='room-name' />
@@ -68,10 +90,7 @@ class RoomList extends Component {
                 }
             </tbody>
         </table>
-        <form onSubmit = { (e)=> this.handleSubmit(e)}>
-            <input type='text' value={this.state.newRoomName} onChange = {(e) =>this.handleChange(e)}/>
-            <input type='submit' />
-        </form>
+
         </div>
         );
     }
