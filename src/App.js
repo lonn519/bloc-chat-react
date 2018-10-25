@@ -22,12 +22,15 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      activeRoom: ''
+      activeRoomId: '',
+      activeRoomName: ''
     }
   }
 
-  handleRoomChange=(roomID)=>{
-    this.setState({activeRoom:roomID})
+  handleRoomChange=(room)=>{
+    console.log(room.key);
+    this.setState({activeRoomName:room.name});
+    this.setState({activeRoomId:room.key});
   }
 
 
@@ -38,14 +41,14 @@ class App extends Component {
           <section className='roomList'>
           <RoomList 
             firebase={firebase}
-            activeRoom = {this.state.activeRoom}
+            activeRoomId = {this.state.activeRoomId}
             handleRoomChange = {(roomId)=> this.handleRoomChange(roomId)}
           />
           </section>
           <section className='messageList'>
             <MessageList
             firebase={firebase}
-            activeRoom={this.state.activeRoom}
+            activeRoomId={this.state.activeRoomId}
           />
           </section>
         </main>

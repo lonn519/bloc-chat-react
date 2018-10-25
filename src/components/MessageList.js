@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Moment from 'react-moment';
 
 class MessageList extends Component {
     constructor(props){
@@ -16,7 +17,7 @@ class MessageList extends Component {
 
     componentDidUpdate=(prevProps)=>{
         console.log('|componentDidUpdate()',this.state.messages);
-        if (prevProps.activeRoom!==this.props.activeRoom){
+        if (prevProps.activeRoomId!==this.props.activeRoomId){
             this.getMessages();
             console.log(' --- Different Room',this.state.messages);
         }else{
@@ -29,7 +30,7 @@ class MessageList extends Component {
         let roomMessages = [];
         this.setState({messages:roomMessages}, ()=>console.log(' --- State: Messages Cleared',this.state.messages));
         console.log(" --- Holding Array Before Firebase= ",roomMessages);
-        this.messagesRef.orderByChild('roomId').equalTo(this.props.activeRoom).on('child_added', snapshot => {
+        this.messagesRef.orderByChild('roomId').equalTo(this.props.activeRoomId).on('child_added', snapshot => {
             const message = snapshot.val();
             message.key = snapshot.key;
             console.log(" --- Firebase Snapshot = ",message);
@@ -41,6 +42,10 @@ class MessageList extends Component {
 
 
     render(){
+        var isRoomSelected =false;
+        if(this.props.activeRoomId!==''){
+            isRoomSelected=true;
+        }
         return(
         <div className='MessageList'>
             <table id='message-list'>
@@ -49,17 +54,26 @@ class MessageList extends Component {
                 </colgroup>
                 <thead>
                     <tr>
-                        <td className='roomTitle'>Room ID is {this.props.activeRoom}</td>
+                    {isRoomSelected ? (
+                        <td colSpan='2' className='roomTitle'>Room name: {this.props.activeRoomName} (id={this.props.activeRoomId})</td>
+                    ) : (
+                        <td className='roomTitle'>Please Select A Room To Show Messages</td>
+                    )}
                     </tr>
+                        
                 </thead>
                 <tbody>
-                    {
-                        this.state.messages.map((message) =>
-                            <tr className='message' key={message.key}>
-                            <td>{message.content}</td>
+                    {this.state.messages.map(message => (
+                        <React.Fragment key={message.key}>
+                            <tr className='message-meta-data' key={'meta' + message.key}>
+                            <td className='message-username'>{message.username}</td>
+                            <td className='message-time'><Moment format="HH:mm:ss YYYY/MM/DD">{Date(message.sentAt)}</Moment></td>
                             </tr>
-                        )
-                    }
+                            <tr className='message-content' key={message.key}>
+                            <td colSpan='2'>{message.content}</td>
+                            </tr>
+                        </React.Fragment>
+                    ))}
                 </tbody>
             </table>
             </div>

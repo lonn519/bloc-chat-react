@@ -38,7 +38,7 @@ class RoomList extends Component {
     }
 
     showRoomName(room){
-        if (this.props.activeRoom===room.key){
+        if (this.props.activeRoomId===room.key){
             return <b>{room.name}</b>;
         } else {
             return room.name;
@@ -61,7 +61,7 @@ class RoomList extends Component {
             <tbody>
                 {
                     this.state.rooms.map((room) =>
-                        <tr className='room' key={room.key} onClick={()=>this.props.handleRoomChange(room.key)}>
+                        <tr className='room' key={room.key} onClick={()=>this.props.handleRoomChange(room)}>
                         <td>{this.showRoomName(room)}</td>
                         </tr>
                     )

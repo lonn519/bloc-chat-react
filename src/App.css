@@ -38,3 +38,14 @@
   min-width: 200px;
   height: 1200px;
 }
+
+.message-time {
+  width: 20%;
+}
+
+.message-username {
+  width: 50%;
+}
+#message-list {
+  width: 70%;
+}
