@@ -40,6 +40,13 @@ class MessageList extends Component {
         });
     }
 
+    formatSentAt=(sentAt)=>{
+        //https://stackoverflow.com/questions/4631928/convert-utc-epoch-to-local-date/22237139
+        var d = new Date(0);
+        return d.setUTCSeconds(sentAt);
+
+    }
+
 
     render(){
         var isRoomSelected =false;
@@ -67,7 +74,7 @@ class MessageList extends Component {
                         <React.Fragment key={message.key}>
                             <tr className='message-meta-data' key={'meta' + message.key}>
                             <td className='message-username'>{message.username}</td>
-                            <td className='message-time'><Moment format="HH:mm:ss YYYY/MM/DD">{Date(message.sentAt)}</Moment></td>
+                            <td className='message-time'><Moment format="HH:mm:ss YYYY/MM/DD">{this.formatSentAt(message.sentAt)}</Moment></td>
                             </tr>
                             <tr className='message-content' key={message.key}>
                             <td colSpan='2'>{message.content}</td>
