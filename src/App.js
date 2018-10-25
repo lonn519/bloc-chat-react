@@ -49,6 +49,7 @@ class App extends Component {
             <MessageList
             firebase={firebase}
             activeRoomId={this.state.activeRoomId}
+            activeRoomName={this.state.activeRoomName}
           />
           </section>
         </main>

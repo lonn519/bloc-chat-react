@@ -37,6 +37,7 @@
   width: 30%;
   min-width: 200px;
   height: 1200px;
+  text-align: left;
 }
 
 .message-time {
@@ -45,7 +46,14 @@
 
 .message-username {
   width: 50%;
+  text-align: left;
 }
+
+.message-content {
+  width: 70%;
+  text-align: left;
+}
+
 #message-list {
   width: 70%;
 }
