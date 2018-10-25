@@ -47,6 +47,8 @@ class MessageList extends Component {
 
     }
 
+    //Fragment not supported with create-react-app so used React.Fragment
+    //https://reactjs.org/blog/2017/11/28/react-v16.2.0-fragment-support.html
 
     render(){
         var isRoomSelected =false;
