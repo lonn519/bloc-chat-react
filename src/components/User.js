@@ -22,8 +22,8 @@ class User extends Component{
     handleAuthButton=()=>{
         console.log('|handleAuthButton()');
         const provider = new this.props.firebase.auth.GoogleAuthProvider();
-        var that = this;
-        this.props.firebase.auth().signInWithPopup(provider).then(function(result) {
+        //var that = this;
+        this.props.firebase.auth().signInWithPopup(provider).then((result)=> {
             // This gives you a Google Access Token. You can use it to access the Google API.
             var token = result.credential.accessToken;
             console.log(' --- token:',token);
@@ -32,8 +32,8 @@ class User extends Component{
             console.log(' --- user:',user);
             var useremail = user.email;
             console.log(' --- email:',useremail);
-            that.props.setUser(user);
-        }).catch(function(error) {
+            this.props.setUser(user);
+        }).catch((error)=> {
             // Handle Errors here.
             var errorCode = error.code;
             console.log(' --- errorCode:',errorCode);

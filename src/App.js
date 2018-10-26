@@ -69,18 +69,17 @@ class App extends Component {
 
   updateDisplayName=(newDisplayName)=>{
     console.log('|updateDisplayName()',newDisplayName);
-    var that = this;
     var user = firebase.auth().currentUser;
     console.log(' --- user:',user);
     if (user !==null){
     user.updateProfile({
       displayName: newDisplayName
-    }).then(function() {
+    }).then(()=> {
       // Update successful.
       console.log(' --- setUser:',user);
-      that.setUser(user);
+      this.setUser(user);
       console.log(' --- after setUser:',user);
-    }).catch(function(error) {
+    }).catch((error)=> {
       // An error happened.
       console.log(' --- Error message:',error.message);
       console.log(' --- Error code:',error.code);
