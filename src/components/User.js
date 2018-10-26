@@ -10,11 +10,9 @@ class User extends Component{
             newDisplayName: '',
             isDisplayNameModalOpen: false
         };
-
-
     }
 
-    componentDidMount(){
+    componentDidMount=()=>{
         console.log('|componentDidMount');
         this.props.firebase.auth().onAuthStateChanged( user => {
             this.props.setUser(user);
@@ -34,9 +32,8 @@ class User extends Component{
             console.log(' --- user:',user);
             var useremail = user.email;
             console.log(' --- email:',useremail);
-            // ...
             that.props.setUser(user);
-          }).catch(function(error) {
+        }).catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
             console.log(' --- errorCode:',errorCode);
@@ -48,10 +45,7 @@ class User extends Component{
             // The firebase.auth.AuthCredential type that was used.
             var credential = error.credential;
             console.log(' --- credential:',credential);
-            // ...
-          });
-          
-
+        });
     }
 
     handleSignOutButton=()=>{
@@ -59,19 +53,16 @@ class User extends Component{
         this.props.firebase.auth().signOut();
     }
 
-    handleChange(e){
+    handleChange=(e)=>{
         this.setState({newDisplayName: e.target.value});
     }
 
-    handleSubmit(e){
+    handleSubmit=(e)=>{
         console.log('|handleSubmit(e)');
         e.preventDefault();
         if (!this.state.newDisplayName){ return }
         this.props.updateDisplayName(this.state.newDisplayName);
-        //this.props.setUser(user);
-        this.clearDisplayNameForm();
         this.toggleDisplayNameModal();
-
     }
 
     toggleDisplayNameModal=()=> {
@@ -122,7 +113,6 @@ class User extends Component{
                 <input type='submit' />
             </form>
             </Modal>
-
             </div>
         );
     }

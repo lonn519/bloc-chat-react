@@ -19,7 +19,7 @@ class RoomList extends Component {
         this.clearCreateRoomForm();
     }
 
-    componentDidMount() {
+    componentDidMount=() =>{
         this.roomsRef.on('child_added', snapshot => {
             const room = snapshot.val();
             room.key = snapshot.key;
@@ -28,13 +28,13 @@ class RoomList extends Component {
         });
     }
 
-    handleSubmit(e){
+    handleSubmit=(e)=>{
         e.preventDefault();
         if (!this.state.newRoomName){ return }
         this.createRoom();
     }
 
-    handleChange(e){
+    handleChange=(e)=>{
         this.setState({newRoomName: e.target.value});
     }
 
@@ -42,22 +42,20 @@ class RoomList extends Component {
         this.setState({newRoomName: ''});
     }
 
-    createRoom(){
+    createRoom=()=>{
         this.roomsRef.push({
             name: this.state.newRoomName
         });
         this.toggleModal();
-
     }
 
-    showRoomName(room){
+    showRoomName=(room)=>{
         if (this.props.activeRoomId===room.key){
             return <b>{room.name}</b>;
         } else {
             return room.name;
         }
     }
-
 
     render(){
         return(
@@ -69,7 +67,7 @@ class RoomList extends Component {
             </form>
         </Modal>
         <button type="button" onClick={this.toggleModal}>
-        create room
+        Create Room
         </button>
         <table id='room-list'>
             <colgroup>

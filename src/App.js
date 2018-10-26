@@ -39,7 +39,7 @@ class App extends Component {
     firebase.auth().signInWithPopup(provider);
   }
 //
-  setUser(user){
+  setUser=(user)=>{
     console.log('|setUser(user)',user);
     if (user !==null){
       console.log(' --- displayName: ',user.displayName);
@@ -67,7 +67,7 @@ class App extends Component {
     this.setState({isUserSignedIn: false});
   }
 
-  updateDisplayName(newDisplayName){
+  updateDisplayName=(newDisplayName)=>{
     console.log('|updateDisplayName()',newDisplayName);
     var that = this;
     var user = firebase.auth().currentUser;
@@ -87,7 +87,6 @@ class App extends Component {
     });
   }
   }
-
 
   render() {
     return (
