@@ -22,7 +22,6 @@ class User extends Component{
     handleAuthButton=()=>{
         console.log('|handleAuthButton()');
         const provider = new this.props.firebase.auth.GoogleAuthProvider();
-        //var that = this;
         this.props.firebase.auth().signInWithPopup(provider).then((result)=> {
             // This gives you a Google Access Token. You can use it to access the Google API.
             var token = result.credential.accessToken;
