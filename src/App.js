@@ -5,6 +5,7 @@ import RoomList from './components/RoomList.js';
 import MessageList from './components/MessageList.js';
 import User from './components/User.js';
 
+
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyC07r_dq81SrsdW9k9aqybC13fzpL3tNis",
@@ -108,10 +109,11 @@ class App extends Component {
           />
           </section>
           <section className='messageList'>
-            <MessageList
+          <MessageList
             firebase={firebase}
             activeRoomId={this.state.activeRoomId}
             activeRoomName={this.state.activeRoomName}
+            user={this.state.userInfo}
           />
           </section>
         </main>

@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import Moment from 'react-moment';
+import MessageSend from './MessageSend.js';
+
 
 class MessageList extends Component {
     constructor(props){
@@ -40,13 +42,6 @@ class MessageList extends Component {
         });
     }
 
-    formatSentAt=(sentAt)=>{
-        //https://stackoverflow.com/questions/4631928/convert-utc-epoch-to-local-date/22237139
-        var d = new Date(0);
-        return d.setUTCSeconds(sentAt);
-
-    }
-
     //Fragment not supported with create-react-app so used React.Fragment
     //https://reactjs.org/blog/2017/11/28/react-v16.2.0-fragment-support.html
 
@@ -76,7 +71,7 @@ class MessageList extends Component {
                         <React.Fragment key={message.key}>
                             <tr className='message-meta-data' key={'meta' + message.key}>
                             <td className='message-username'>{message.username}</td>
-                            <td className='message-time'><Moment format="HH:mm:ss YYYY/MM/DD">{this.formatSentAt(message.sentAt)}</Moment></td>
+                            <td className='message-time'><Moment format="HH:mm:ss YYYY/MM/DD">{message.sentAt}</Moment></td>
                             </tr>
                             <tr className='message-content' key={message.key}>
                             <td colSpan='2'>{message.content}</td>
@@ -85,6 +80,17 @@ class MessageList extends Component {
                     ))}
                 </tbody>
             </table>
+            <section>
+                {isRoomSelected ? (
+                    <MessageSend
+                    user={this.props.user}
+                    firebase={this.props.firebase}
+                    activeRoomId = {this.props.activeRoomId}
+                    />
+                ) :(
+                    <p>No Room Selected</p>
+                )}
+          </section>
             </div>
         );
     }

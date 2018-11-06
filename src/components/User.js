@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Modal from './Modal.js';
 
-
 class User extends Component{
     constructor(props){
         super(props);
